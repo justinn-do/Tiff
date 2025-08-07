@@ -4,6 +4,10 @@
     color:white;
 }
 
+.container span{
+    color:black;
+}
+
 h1{
     font-size: 70px;;
 }
