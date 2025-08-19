@@ -23,6 +23,9 @@
 
 <span>hint: HCNaO AlSClFe</span>
     </div>
+
+   
+
     <div class="atom">
         <div class="nucleus"></div>
         
@@ -38,5 +41,57 @@
           <div class="electron"></div>
         </div>
       </div>
+       <!-- Four Inputs + Submit -->
+
+
+
+  <div class="answerss">
+    <input type="text" id="answer1" placeholder="Answer 1"> + 
+    <input type="text" id="answer2" placeholder="Answer 2">
+->
+    <input type="text" id="answer3" placeholder="Answer 3">
+    +
+    <input type="text" id="answer4" placeholder="Answer 4">
+    <br>
+    <button id="submitBtn">Submit</button>
+    <p id="result"></p>
+
+    <span>Instructions: Write answer using numbers and alphabetical characters.</span>
+    <span>Do not use special characters.</span>
+  </div>
+
+  <script>
+  const correctAnswers = ["2C3H8", "10O2", "8CO2", "10H2O"];
+
+  const button = document.getElementById("submitBtn");
+  const result = document.getElementById("result");
+
+  function checkAnswers() {
+    const userAnswers = [
+      document.getElementById("answer1").value.trim().toLowerCase(),
+      document.getElementById("answer2").value.trim().toLowerCase(),
+      document.getElementById("answer3").value.trim().toLowerCase(),
+      document.getElementById("answer4").value.trim().toLowerCase()
+    ];
+
+    // Compare all four
+    const correct = userAnswers.every((ans, i) => ans === correctAnswers[i].toLowerCase());
+
+    if (correct) {
+      // ✅ Redirect if all match
+      window.location.href = "nextpage.html"; // change to your URL
+    } else {
+      result.textContent = "❌ One or more answers are incorrect. Try again.";
+      result.style.color = "red";
+    }
+  }
+
+  button.addEventListener("click", checkAnswers);
+  document.querySelectorAll("input").forEach(input => {
+    input.addEventListener("keypress", e => {
+      if (e.key === "Enter") checkAnswers();
+    });
+  });
+</script>
 </body>
 </html>
